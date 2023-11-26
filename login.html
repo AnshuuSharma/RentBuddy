@@ -98,6 +98,17 @@ function submitForm(event){
 
     const name=document.getElementById('name').value
     const password=document.getElementById('password').value
+
+    fetch('',{
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JOSN.stringify({name,password})
+    })
+    .then(response=>response.json())
+    .then(data=>console.log(data))
+    .catch(error=>console.error('Error:'error));
 }
 </script>
 </body>
