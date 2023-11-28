@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+       background:linear-gradient(teal,rgb(1, 79, 79));
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    div{
+        width:50vw;
+        height:52vh;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgb(251, 251, 247);
+        margin:10vh;
+        border-radius: 23px;
+    }
+    form{
+        /* padding:10px; */
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center;
+        alig */
+        align-items: center;
+        border-radius: 10px;
+       
+    }
+    label{
+        font-size: large;
+        color:rgb(9, 68, 68);
+        /* font-weight: bold; */
+        /* font-family */
+    }
+    input{
+        padding:10px;
+        margin:10px;
+        width:20vw;
+        /* border:2px; */
+        border-radius: 8px;
+        border-style: double;
+       border-color: grey;
+    }
+   h1{
+    color:white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   }
+   button{
+    width:80px;
+    padding:8px;
+    border-radius: 23px;
+    background-color: teal;
+    color:white;
+    border:transparent;
+   }
+</style>
+<body>
+    <h1>Add Listing</h1>
+    <div>
+        <form onsubmit="submitForm(event)">
+            <label for="fname">Name:</label>
+            <input type="text" id="fname" name="fname" placeholder="your full name">
+            <label for="location">location</label>
+            <input type="text" id="location" name="location" placeholder="location">
+            <label for="price">price</label>
+            <input type="text" id="price" name="price" placeholder="price of the room(s)">
+            <label for="room">no. of rooms</label>
+            <input type="text" id="room" name="room" placeholder="number of rooms to sell"><br>
+            <button>ADD </button>
+        </form>
+    </div>
+    <script>
+        function submitForm(event){
+    event.preventDefault();
+
+    const name=document.getElementById('fname').value
+    const location=document.getElementById('location').value
+    const price=document.getElementById('price').value
+    const room=document.getElementById('room').value
+     fetch('',{
+        method:'POST',
+        headers:{
+            'content-Type':'application/json'
+        },
+        body:JSON.stringify({name,location,price,room})
+     })
+     .then(response=>response.json())
+     .then(data=>console.log(data))
+     .catch(error=>console.error('Error:',error));
+}
+    </script>
+</body>
+</html>
