@@ -78,7 +78,7 @@ a{
     })
     .then((data)=>{
         data.forEach(element => {
-            const markup=`<li>${element.name}<br> ${element.rooms}<br>${element.location}<br>${element.price}<br><button>contact</button></li>`;
+            const markup=`<li>"Name: "${element.name}<br>"Number of rooms:" ${element.rooms}<br>"Location: "${element.location}<br>"Price: "${element.price}<br>"Contact: "${element.contact}</li>`;
             document.querySelector('ul').insertAdjacentHTML('beforeend',markup);
         });
     })
