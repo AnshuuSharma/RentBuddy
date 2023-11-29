@@ -102,7 +102,7 @@
     /* justify-content: center; */
     align-items: center;
  }
- .search-item ul li{
+ .search-item ol li{
     margin:20px;
     display: flex;
     /* flex-direction: column; */
@@ -172,8 +172,8 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 <section class="search-item" >
     <div >
 
-        <ul>
-        </ul>
+        <ol>
+        </ol>
         
     </div>
 </section>
@@ -200,7 +200,7 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     .then((data)=>{
         data.forEach(element => {
             const markup=`<li>${element.name}<br> ${element.rooms}<br>${element.location}<br>${element.price}<br><button>contact</button></li>`;
-            document.querySelector('ul').insertAdjacentHTML('beforeend',markup);
+            document.querySelector('ol').insertAdjacentHTML('beforeend',markup);
         });
     })
 }
