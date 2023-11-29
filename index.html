@@ -199,7 +199,7 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     })
     .then((data)=>{
         data.forEach(element => {
-            const markup=`<li>"Name:"${element.name}<br>"Number of rooms:"${element.rooms}<br>"Location:"${element.location}<br>"Price"${element.price}<br>"Contact:"${element.contact}</li>`;
+            const markup=`<li>"Name: "${element.name}<br>"Number of rooms:"${element.rooms}<br>"Location: "${element.location}<br>"Price: "${element.price}<br>"Contact: "${element.contact}</li>`;
             document.querySelector('ol').insertAdjacentHTML('beforeend',markup);
         });
     })
