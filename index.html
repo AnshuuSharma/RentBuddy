@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentBuddy</title>
+</head>
+<style>
+   nav{
+    width:100%;
+    height:60px;
+    margin: 0;
+    padding: 0;
+    background-color:rgb(62, 176, 176) ;
+   }
+   nav ul{
+    float:right;
+    display:flex;
+   }
+   .list-item{
+    list-style: none;
+    padding:5px;
+   }
+   /* .list-item a{
+    color:white;
+    text-decoration: none;
+   } */
+   .list-item a{
+    color:white;
+    text-decoration: none;
+   margin:10px;
+   font-size: large;
+   }
+   .list-item a:hover{
+    color:rgb(171, 228, 249);
+   }
+   .list-item button{
+    background-color: white;
+    color:teal;
+    border-radius: 10px ;
+    border-color:transparent;
+    padding:5px;
+    width:60px;
+   }
+   .list-item button:hover{
+    background-color:rgb(43, 137, 137) ;
+    color:white;
+   }
+   
+   #home{
+    margin-top: 20px;
+    display:flex;
+    justify-content: center;
+    background-color: rgb(77, 183, 183);
+    height:60vh;
+    margin-bottom: 20px;
+   }
+   .first-half{
+    margin: 25px;
+    margin-top: 15vh;
+   }
+  .first-half h1{
+    font-size: 6vh;
+    /* margin-bottom: 10px; */
+    font-family:sans-serif;
+    color:rgb(4, 69, 69);
+  }
+  .first-half p{
+    font-family: sans-serif;
+    padding:10px;
+    margin-bottom:20px;
+    color:rgb(4, 69, 69)
+  }
+  
+  form{
+    width:43.5vw;
+    background-color: white;
+  }
+  form input{
+    border:transparent;
+    padding:5px;
+  }
+  .search-btn{
+    background-color: rgb(3, 94, 94);
+    color:white;
+    width:91px;
+    padding:5px;
+    border-color: transparent;
+  }
+  .search-btn:hover{
+    background-color: rgb(2, 41, 41);
+  }
+  form select{
+    width:118px;
+    padding:5px;
+    border-color: transparent;
+  }
+  #search-item{
+    margin:80px;
+    display:flex;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    align-items: center;
+ }
+ .search-item ul li{
+    margin:20px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+ width:30vw;
+height:400px;
+background-color:rgb(208, 232, 219);
+margin:10px;
+padding:30px;
+border-radius: 43px;
+list-style:none;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* visibility: hidden; */
+}
+</style>
+<body>
+    <footer>
+        <nav>
+            <img src="/navimg.png" width="300px" height="180px">
+            <ul>
+                <li class="list-item"><a href="#">home</a></li>
+                <li class="list-item"><a href="./listing.html">Listings</a></li>
+                <li class="list-item"><a href="./login.html"><button>Login</button></a></li>
+                <li class="list-item"><a href="./signup.html"><button>signup</button></a></li>
+            </ul>
+        </nav>
+    </footer>
+    <section id="home">
+        <div class="first-half">
+            <span>
+                <h1>FIND A PLACE TO CALL HOME!</h1>
+                <p>Buying and selling rooms made easy with RentBuddy.Become a landlord or a tenant and find the perfect house for yourself. </p>
+                <form onsubmit="submitForm(event)" >
+                    <!-- <label for="cars">Location:</label> -->
+                    <!-- <input type="text" placeholder="search your city">| -->
+                    <select name="location" id="location">
+                        <option value="bhopal">bhopal</option>
+                        <option value="vidisha">vidisha</option>
+                      <option value="indore">indore</option>
+                      <option value="ujjain">ujjain</option>
+                      <option value="dewas">dewas</option>
+                      <option value="gwalior">gwalior</option>
+                      <option value="sehore">sehore</option>
+                      <option value="basoda">basoda</option>
+                      <option value="bina">bina</option>
+                      <option value="ratlam">ratlam</option>
+                      <option value="sagar">sagar</option>
+                      <option value="harda">Harda</option>
+                     
+                    </select>|
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" placeholder="price under">|
+                </select>
+                <label for="room">Rooms:</label>
+                <input type="number" id="room" placeholder="no. of rooms">
+                    <button class="search-btn">Search</button>
+                </form>
+                
+            </span>
+        </div>
+        <div class="second-half">
+            <span>
+                <img src="https://img.freepik.com/premium-photo/house-woods-with-yellow-sign-that-says-house-is-front_590200-1300.jpg" width="750px" height="480px">
+            </span>
+        </div>
+    </section><br>
+<section >
+    <div  id="search-item">
+
+        <ul>
+        </ul>
+        
+    </div>
+</section>
+    <script>
+        function submitForm(event){
+    event.preventDefault();
+
+    
+    const location=document.getElementById('location').value
+    const price=Number.parseInt(document.getElementById('price').value);
+    const room=Number.parseInt(document.getElementById('room').value);
+     
+
+ fetch('',{
+        method:'GET',
+        headers:{
+            'content-Type':'application/json'
+        },
+        body:JSON.stringify({room,price,location})
+     })
+    .then((res)=>{
+       return res.json();
+    })
+    .then((data)=>{
+        data.forEach(element => {
+            const markup=`<li>${element.name}<br> ${element.rooms}<br>${element.location}<br>${element.price}<br><button>contact</button></li>`;
+            document.querySelector('ul').insertAdjacentHTML('beforeend',markup);
+        });
+    })
+}
+    </script>
+</body>
+</html>
